@@ -1,0 +1,47 @@
+﻿@model BasicAuth.ViewModel.RegisterViewModel
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "_Layout";
+}
+
+<h2>User Registration</h2>
+
+@using (Html.BeginForm("Register", "Accounts", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Enter Name" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter Email", type = "email" })
+        @Html.ValidationMessageFor(m => m.Email)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.PhoneNo)
+        @Html.TextBoxFor(m => m.PhoneNo, new { @class = "form-control", placeholder = "Enter Phone Number" })
+        @Html.ValidationMessageFor(m => m.PhoneNo)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter Password" })
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Register</button>
+}
+@* @section Scripts {
+    @if (TempData["msg"] != null)
+    {
+        <script>
+            var message = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(TempData["msg"]));
+            alert(message);
+        </script>
+    }
+} *@
