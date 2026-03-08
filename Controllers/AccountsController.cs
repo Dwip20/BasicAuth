@@ -32,9 +32,8 @@ namespace BasicAuth.Controllers
 
                 //Check if user already exists
                 string checkQuery = "SELECT 1 FROM users WHERE email=@email OR phone_no=@phone";
-
-                using (NpgsqlCommand checkCommand = new NpgsqlCommand(checkQuery, connection))
-                {
+                NpgsqlCommand checkCommand = new NpgsqlCommand(checkQuery, connection);
+                
                     checkCommand.Parameters.AddWithValue("@email", viewModel.Email);
                     checkCommand.Parameters.AddWithValue("@phone", viewModel.PhoneNo);
 
@@ -46,7 +45,7 @@ namespace BasicAuth.Controllers
                             return RedirectToAction("Register", "Accounts");
                         }
                     }
-                }
+                
 
                 // Insert new user
                 string insertQuery = "INSERT INTO users (name, email, phone_no, password) VALUES (@name, @email, @phone, @password)";
